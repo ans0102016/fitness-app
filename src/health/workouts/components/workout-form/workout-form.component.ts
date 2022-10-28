@@ -14,38 +14,24 @@ import { Workout } from '../../../shared/services/workouts/workouts.service';
 
                 <div class="workout-form__name">
                     <label>
-                        <h3>Meal name</h3>
+                        <h3>Workout name</h3>
                         <input
                             type="text"
                             placeholder="e.g. English Breakfast"
                             formControlName="name">
                         <div class="error" *ngIf="required">
-                            Meal Name is required!
+                            Workout Name is required!
                         </div>
+                    </label>
+                    <label>
+                        <h3>Type</h3>
+                        <workout-type
+                            formControlName="type">
+                        </workout-type>
                     </label>
                 </div>
 
-                <div class="workout-form__food">
-                    <div class="workout-form__subtitle">
-                        <h3>Food</h3>
-                        <button 
-                            type="button"
-                            class="workout-form__add"
-                            (click)="addIngredient()">
-                            <img src="img/add-white.svg">
-                            Add Workout
-                        </button>
-                    </div>
-                    <div formArrayName="ingredients">
-                        <label *ngFor="let c of ingredients.controls; index as i">
-                            <input [formControlName]="i" placeholder="e.g. Eggs">
-                            <span
-                                class="workout-form__remove"
-                                (click)="removeIngredient(i)">
-                            </span>
-                        </label>
-                    </div>
-                </div>
+                
 
                 <div class="workout-form__submit">
                     <div>
@@ -117,7 +103,8 @@ export class WorkoutFormComponent implements OnChanges {
     remove = new EventEmitter<Workout>();
 
     form = this.fb.group({
-        name: ['', Validators.required]
+        name: ['', Validators.required],
+        type: 'strength'
     })
     constructor(
         private fb: FormBuilder

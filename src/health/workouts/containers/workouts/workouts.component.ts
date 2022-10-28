@@ -12,7 +12,7 @@ import { Store } from 'store';
             <div class="workouts__title">
                 <h1>
                     <img src="/img/workout.svg">
-                    Your Meals
+                    Your Workouts
                 </h1>
                 <a 
                     class="btn__add"
