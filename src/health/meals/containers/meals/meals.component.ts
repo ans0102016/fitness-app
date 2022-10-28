@@ -25,7 +25,7 @@ import { Store } from 'store';
                 
                 <div class="message" *ngIf="!meals.length">
                     <img src="/img/face.svg">
-                    No meals, add a new meal to start
+                    No meals found, add a new meal to start
                 </div>
                 <list-item
                     *ngFor="let meal of meals"
