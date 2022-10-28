@@ -5,6 +5,9 @@ import { Store } from 'store';
 import { Observable } from 'rxjs';
 
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/find';
 
 export interface Meal {
     name: string,
@@ -28,6 +31,14 @@ export class MealsService {
 
     get uid() {
         return this.authService.user.uid;
+    }
+
+    getMeal(key: string) {
+        if(!key) return Observable.of({});
+        return this.store.select<Meal[]>('meals')
+            .filter(Boolean)
+            .map(meals => meals.find((meal: Meal) => meal.$key === key)
+            )
     }
 
     addMeal(meal: Meal){
